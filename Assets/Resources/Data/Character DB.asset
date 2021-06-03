@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbfcd6ffc7959414f833154663bb7748, type: 3}
+  m_Name: Character DB
+  m_EditorClassIdentifier: 
+  CharacterTypes:
+  - Name: Dwarven
+    Type: 0
+    Sprites:
+    - {fileID: -8572099535365880269, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    - {fileID: -3420220227429688757, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    - {fileID: -3156755782527167083, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    - {fileID: 899510119888906295, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    - {fileID: 6075690807343105130, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    - {fileID: 6769826322431711728, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    LeaderSprite: {fileID: 8747821554951363100, guid: 9c4658b31c728df40876c825af8326d3, type: 3}
+    Names:
+    - Vondohr
+    - Benmin
+    - Barbrek
+    - Umrik
+    - Dolrak
+    - Bheldram
+    - Ranmyl
+    - Regbrek
+    - Muirron
+    - Thurgrim
+    - Hurgrim
+    - Baerdram
+    - Gryrum
+    - Bharmar
+    - Thulnus
+    - Brumdor
+    - Bromtharn
+    - Daerrom
+    LeaderPrefix: King
+  - Name: Human
+    Type: 1
+    Sprites:
+    - {fileID: 5830351089809234961, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 7020735317260834976, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: -4372246538552083411, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 7497861744460336893, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 7594636661983160707, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 2347595638246748777, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 6935645144457060745, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 3364410644810877762, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: 5562595761977013571, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    - {fileID: -8781547976382601951, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    LeaderSprite: {fileID: -4415761907545597346, guid: 53d33bc1263940f42be88f6f7c912e50, type: 3}
+    Names:
+    - Barnard
+    - Rahul
+    - Mitchel
+    - Kieran
+    - Thorbert
+    - Dragan
+    - Dobbs
+    - Abelard
+    - Taylor
+    - Helmuth
+    - Sidwell
+    - Jeremy
+    LeaderPrefix: King
+  - Name: Elven
+    Type: 2
+    Sprites:
+    - {fileID: 3480464468084753355, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: 6907005584437461332, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: 2733852924515074947, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: -4878734186340775105, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: 6961647506726507503, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: -1189825192575122896, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: 5254411319625995841, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    - {fileID: 112113309690886805, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    LeaderSprite: {fileID: 7941893633027327729, guid: e60161041c086794aaee343d0837bd97, type: 3}
+    Names:
+    - Daelen
+    - Perlen
+    - Fenpeiros
+    - Genyarus
+    - Aesalor
+    - Elamenor
+    - Keafaren
+    - Zinxalim
+    - Heipetor
+    - Perlamin
+    - Urihice
+    - Craxalim
+    LeaderPrefix: Lord
+  - Name: Goblin
+    Type: 3
+    Sprites:
+    - {fileID: -3757547826733318397, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -1360579524249385558, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -1474701725510520778, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 1804984797735263853, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -6122903385437482886, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 4426031245293351206, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 8832599878841814534, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 7731934116255456039, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 8815917278664691268, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -5346050160311093811, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 7871303299115315285, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 8099368508642602544, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: 8815917278664691268, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -2099041253870613700, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -5346050160311093811, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -2929714454508486074, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    - {fileID: -8778956777296502574, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    LeaderSprite: {fileID: 2653647568146442998, guid: 4f358a5c3f340314c8afaf8bc554270c, type: 3}
+    Names:
+    - Trygs
+    - Plizut
+    - Peanrux
+    - Wrird
+    - Plebzok
+    - Krakukt
+    - Blehzesz
+    - Atnugz
+    - Gidzaat
+    - Vrugz
+    - Vaming
+    - Gleec
+    LeaderPrefix: Chief

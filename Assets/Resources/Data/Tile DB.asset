@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb00eed77ddece4b8328eb7af671a5b, type: 3}
+  m_Name: Tile DB
+  m_EditorClassIdentifier: 
+  Tiles:
+  - Name: Grass
+    Type: 0
+    Color: 2
+    Sprites:
+    - {fileID: 5462260339256037441, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  - Name: Dirt
+    Type: 1
+    Color: 6
+    Sprites:
+    - {fileID: 5462260339256037441, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  - Name: Stone
+    Type: 2
+    Color: 7
+    Sprites:
+    - {fileID: -5322195632745071827, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  - Name: Shadow
+    Type: 3
+    Color: 0
+    Sprites:
+    - {fileID: -3633104695738483918, guid: a7398ccb5d61e5f4ab6d8bed277fa27e, type: 3}
+  Items:
+  - Name: Plant
+    Type: 0
+    Color: 10
+    Sprites:
+    - {fileID: 7102661231517891035, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+    - {fileID: 4540361516812355322, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  BuildingBlocks:
+  - Name: Wall
+    Type: 2
+    Color: 7
+    Sprites:
+    - {fileID: -7024954323162115502, guid: a7398ccb5d61e5f4ab6d8bed277fa27e, type: 3}
+  - Name: Floor
+    Type: 2
+    Color: 7
+    Sprites:
+    - {fileID: 6862652905668379619, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  - Name: WallDeco
+    Type: 2
+    Color: 7
+    Sprites:
+    - {fileID: 6250241497264035985, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Up: {fileID: 6377616002451385119, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Down: {fileID: -5234319913593863522, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Left: {fileID: 20751377150797391, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Right: {fileID: 9007045568244329840, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Blocked: {fileID: 6029432795723339535, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Build: {fileID: -3625786254717306644, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Dig: {fileID: 3775577781543462780, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Gather: {fileID: 7102661231517891035, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}
+  Decorate: {fileID: -3625786254717306644, guid: 743a028bbaf0e8549ab9ea0ce47715c9, type: 3}

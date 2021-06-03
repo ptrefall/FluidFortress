@@ -1,0 +1,10 @@
+Ground layers must be pure numbers and increment by 1, starting at 0.
+Item layers must be prefixed with 'i', followed by the number that indicates its layer, for example "i3" for item map on layer 3.
+
+Ground Codes:
+Stone: (77,77,77)
+Dirt: (102, 82, 51)
+Grass: (32, 64, 0)
+
+Item Codes:
+Plant (0, 255, 0)
