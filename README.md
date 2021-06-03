@@ -7,4 +7,4 @@ Built for the [AI and Games Jam](https://itch.io/jam/aiandgames-2021)
 ![AI and Games Jam](https://img.itch.zone/aW1hZ2UyL2phbS8yOTc2NDYvNTYxNTQ2MC5wbmc=/original/a6Wrkp.png)
 
 ## Progress
-![Day5](https://imgur.com/Y01KDRW)
+![Day5](https://i.imgur.com/Y01KDRW.png)
