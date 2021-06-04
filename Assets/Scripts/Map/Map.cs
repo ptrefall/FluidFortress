@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Fluid.AI;
 using UnityEngine;
 
 namespace Fluid
@@ -17,6 +18,8 @@ namespace Fluid
         private List<Character> _characters = new List<Character>();
         private List<Interactible> _interactible = new List<Interactible>();
         private List<MapLayer> _mapLayers = new List<MapLayer>();
+
+        private Pathfinder _pathfinder = new Pathfinder();
 
         private MapLayer _shadowLayer;
         private int _currentLayer = 0;
@@ -43,6 +46,21 @@ namespace Fluid
         public int Width => _width;
         public int Height => _height;
 
+        public bool FindPath(int fromLayer, int fromX, int fromY, int toLayer, int toX, int toY, ref Stack<Tile> path)
+        {
+            return _pathfinder.FindPath(fromLayer, fromX, fromY, toLayer, toX, toY, ref path);
+        }
+
+        public bool FindPath(int fromLayer, int fromX, int fromY, Tile to, ref Stack<Tile> path)
+        {
+            return _pathfinder.FindPath(fromLayer, fromX, fromY, to.Layer, to.Pos.x, to.Pos.y, ref path);
+        }
+
+        public bool FindPath(Tile from, Tile to, ref Stack<Tile> path)
+        {
+            return _pathfinder.FindPath(from, to, ref path);
+        }
+
         public void Focus(int x, int y, int h, bool update)
         {
             _cameraFollower.transform.position = new Vector3(x, y, 0);
@@ -51,6 +69,15 @@ namespace Fluid
             if (update)
             {
                 UpdateActiveLayer();
+            }
+
+            foreach (var c in PlayerController.Instance.Fortress.Characters)
+            {
+                if (c.Pos.x == x && c.Pos.y == y && c.Layer == h)
+                {
+                    PlayerController.Instance.Fortress.GiveJob(c);
+                    break;
+                }
             }
         }
 
@@ -257,27 +284,32 @@ namespace Fluid
 
         public Tile GetTile(int x, int y)
         {
+            return GetTile(_currentLayer, x, y);
+        }
+
+        public Tile GetTile(int layer, int x, int y)
+        {
             if (x < 0 || y < 0 || x >= _width || y >= _height)
             {
                 return null;
             }
 
-            return _mapLayers[_currentLayer][x, y];
+            return _mapLayers[layer][x, y];
         }
 
         public bool IsWalkable(Tile tile)
         {
-            return IsWalkable(tile.Pos.x, tile.Pos.y);
+            return IsWalkable(tile.Layer, tile.Pos.x, tile.Pos.y);
         }
 
-        public bool IsWalkable(int x, int y)
+        public bool IsWalkable(int layer, int x, int y)
         {
             if (x < 0 || y < 0 || x >= _width || y >= _height)
             {
                 return false;
             }
 
-            var tile = _mapLayers[_currentLayer][x, y];
+            var tile = _mapLayers[layer][x, y];
             if (tile != null)
             {
                 if (tile.BuildingBlock != null)
@@ -286,7 +318,7 @@ namespace Fluid
                 }
             }
 
-            var tileAbove = FindTileAbove(_currentLayer, x, y);
+            var tileAbove = FindTileAbove(layer, x, y);
             if (tileAbove != null)
             {
                 return false;
@@ -370,7 +402,17 @@ namespace Fluid
             return MoveCost(fromLayer, (int) from.x, (int) from.y, (int) to.x, (int) to.y);
         }
 
+        public int MoveCost(int fromLayer, Vector2 from, int toLayer, Vector2 to)
+        {
+            return MoveCost(fromLayer, (int)from.x, (int)from.y, toLayer, (int)to.x, (int)to.y);
+        }
+
         public int MoveCost(int fromLayer, int fromX, int fromY, int toX, int toY)
+        {
+            return MoveCost(fromLayer, fromX, fromY, _currentLayer, toX, toY);
+        }
+
+        public int MoveCost(int fromLayer, int fromX, int fromY, int toLayer, int toX, int toY)
         {
             if (fromX < 0 || fromY < 0 || fromX >= _width || fromY >= _height)
             {
@@ -387,14 +429,19 @@ namespace Fluid
                 return -1;
             }
 
-            var toTile = _mapLayers[_currentLayer][toX, toY];
+            if (toLayer < 0 || toLayer >= _mapLayers.Count)
+            {
+                return -1;
+            }
+
+            var toTile = _mapLayers[toLayer][toX, toY];
             if (toTile != null && toTile.BuildingBlock != null)
             {
                 return -1;
             }
 
             var toTopLayer = FindTopLayer(toX, toY);
-            var toAboveTile = FindTileAbove(_currentLayer, toX, toY);
+            var toAboveTile = FindTileAbove(toLayer, toX, toY);
 
             var diff = Mathf.Abs(fromLayer - toTopLayer);
 

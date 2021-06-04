@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -16,6 +17,7 @@ namespace Fluid
         private int _currentLayer;
 
         private Tile _currentJobTile;
+        private Stack<Tile> _currentPath = new Stack<Tile>();
 
         private CharacterUI _ui;
 
@@ -49,9 +51,22 @@ namespace Fluid
             _ui.ListenClick(OnUiClicked);
         }
 
-        public void UpdateJob(Fortress.Job job)
+        public bool UpdateJob(Fortress.Job job, Tile tile)
         {
-            _ui?.UpdateJob(Map.Instance.GetJobSprite(job));
+            if (Map.Instance.FindPath(Layer, Pos.x, Pos.y, tile, ref _currentPath))
+            {
+                _ui?.UpdateJob(Map.Instance.GetJobSprite(job));
+                _currentJobTile = tile;
+
+                foreach (var t in _currentPath)
+                {
+                    t.OverrideColor = ColorPalette.LMAGENTA;
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         public void TakeDamage(int damage)

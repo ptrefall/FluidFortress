@@ -17,6 +17,9 @@ namespace Fluid
         private int _layer;
         private int _transitionCost;
 
+        private Color? _overrideColor;
+        private Color _lastColor;
+
         private Fortress.Job _currentJob = Fortress.Job.None;
 
         private TileDbEntry _item;
@@ -28,6 +31,23 @@ namespace Fluid
         public TileDbEntry Item => _item;
         public TileDbEntry BuildingBlock => _buildingBlock;
         public Fortress.Job Job => _currentJob;
+
+        public Color OverrideColor
+        {
+            get => _overrideColor ?? _renderer.color;
+            set
+            {
+                _lastColor = _renderer.color;
+                _overrideColor = value;
+                _renderer.color = value;
+            }
+        }
+
+        public void ResetColorOverride()
+        {
+            _overrideColor = null;
+            _renderer.color = _lastColor;
+        }
 
         private void Awake()
         {

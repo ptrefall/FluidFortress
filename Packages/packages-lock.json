@@ -216,6 +216,18 @@
       },
       "url": "https://packages.unity.com"
     },
+    "fluid.htn": {
+      "version": "file:../../fluid-hierarchical-task-network/Fluid-HTN",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "fluid.htn.ext": {
+      "version": "file:../../fluid-hierarchical-task-network-ext/Fluid-HTN-Ext",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
