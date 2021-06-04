@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Fluid.AI;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Fluid
 {
@@ -13,7 +16,8 @@ namespace Fluid
             Dig,
             Gather,
             Build,
-            Decorate
+            Decorate,
+            Any
         };
 
         public enum FortressType
@@ -46,49 +50,84 @@ namespace Fluid
 
         public List<Character> Characters => _characters;
 
-        public bool GiveJob(Character character)
+        public bool GiveJob(Character character, Job jobType = Job.Any)
         {
-            var job = GetBuildJob();
-            if (job != null)
+            if (character.Job != Job.None)
             {
-                if (character.UpdateJob(job.Job, job))
+                return false;
+            }
+
+            Tile job = null;
+
+            if (jobType == Job.Any)
+            {
+                var options = new List<Job>();
+                if (_openBuildJobs.Count > 0) options.Add(Job.Build);
+                if (_openDigJobs.Count > 0) options.Add(Job.Dig);
+                if (_openGatherJobs.Count > 0) options.Add(Job.Gather);
+                if (_openDecorateJobs.Count > 0) options.Add(Job.Decorate);
+
+                if (options.Count == 0)
                 {
-                    _openBuildJobs.Remove(job);
-                    _grabbedBuildJobs.Add(job);
-                    return true;
+                    return false;
+                }
+
+                return GiveJob(character, options[Random.Range(0, options.Count)]);
+            }
+
+            if (jobType == Job.Build)
+            {
+                job = GetBuildJob();
+                if (job != null)
+                {
+                    if (character.UpdateJob(job.Job, job))
+                    {
+                        _openBuildJobs.Remove(job);
+                        _grabbedBuildJobs.Add(job);
+                        return true;
+                    }
                 }
             }
 
-            job = GetDigJob();
-            if (job != null)
+            if (jobType == Job.Dig)
             {
-                if (character.UpdateJob(job.Job, job))
+                job = GetDigJob();
+                if (job != null)
                 {
-                    _openDigJobs.Remove(job);
-                    _grabbedDigJobs.Add(job);
-                    return true;
+                    if (character.UpdateJob(job.Job, job))
+                    {
+                        _openDigJobs.Remove(job);
+                        _grabbedDigJobs.Add(job);
+                        return true;
+                    }
                 }
             }
 
-            job = GetGatherJob();
-            if (job != null)
+            if (jobType == Job.Gather)
             {
-                if (character.UpdateJob(job.Job, job))
+                job = GetGatherJob();
+                if (job != null)
                 {
-                    _openGatherJobs.Remove(job);
-                    _grabbedGatherJobs.Add(job);
-                    return true;
+                    if (character.UpdateJob(job.Job, job))
+                    {
+                        _openGatherJobs.Remove(job);
+                        _grabbedGatherJobs.Add(job);
+                        return true;
+                    }
                 }
             }
 
-            job = GetDecorateJob();
-            if (job != null)
+            if (jobType == Job.Decorate)
             {
-                if (character.UpdateJob(job.Job, job))
+                job = GetDecorateJob();
+                if (job != null)
                 {
-                    _openDecorateJobs.Remove(job);
-                    _grabbedDecorateJobs.Add(job);
-                    return true;
+                    if (character.UpdateJob(job.Job, job))
+                    {
+                        _openDecorateJobs.Remove(job);
+                        _grabbedDecorateJobs.Add(job);
+                        return true;
+                    }
                 }
             }
 
@@ -104,15 +143,13 @@ namespace Fluid
 
             foreach (var job in _openBuildJobs)
             {
-                if (Map.Instance.IsWalkable(job) == false)
+                if (Map.Instance.IsWalkable(job))
                 {
-                    var adj = Pathfinder.GetWalkableAdjacentTile(job);
-                    if (adj != null)
-                    {
-                        return job;
-                    }
+                    return job;
                 }
-                else
+
+                var adj = Pathfinder.GetWalkableAdjacentTile(job);
+                if (adj != null)
                 {
                     return job;
                 }
@@ -199,10 +236,52 @@ namespace Fluid
             return null;
         }
 
+        public void ReturnJob(Tile tile)
+        {
+            switch (tile.Job)
+            {
+                default:
+                case Job.None:
+                    return;
+                case Job.Build:
+                    _grabbedBuildJobs.Remove(tile);
+                    if (_openBuildJobs.Contains(tile) == false)
+                    {
+                        _openBuildJobs.Add(tile);
+                    }
+                    break;
+                case Job.Dig:
+                    _grabbedDigJobs.Remove(tile);
+                    if (_openDigJobs.Contains(tile) == false)
+                    {
+                        _openDigJobs.Add(tile);
+                    }
+                    break;
+                case Job.Gather:
+                    _grabbedGatherJobs.Remove(tile);
+                    if (_openGatherJobs.Contains(tile) == false)
+                    {
+                        _openGatherJobs.Add(tile);
+                    }
+                    break;
+                case Job.Decorate:
+                    _grabbedDecorateJobs.Remove(tile);
+                    if (_openDecorateJobs.Contains(tile) == false)
+                    {
+                        _openDecorateJobs.Add(tile);
+                    }
+                    break;
+            }
+        }
+
         public void CompleteJob(Tile tile)
         {
             tile.SetJob(Job.None);
 
+            if (_grabbedBuildJobs.Remove(tile)) return;
+            if (_grabbedDigJobs.Remove(tile)) return;
+            if (_grabbedGatherJobs.Remove(tile)) return;
+            if (_grabbedDecorateJobs.Remove(tile)) return;
             if (_openBuildJobs.Remove(tile)) return;
             if (_openDigJobs.Remove(tile)) return;
             if (_openGatherJobs.Remove(tile)) return;
@@ -324,7 +403,7 @@ namespace Fluid
                 var h = Map.Instance.FindTopLayer(px, py);
 
                 var character = Instantiate(_characterPrefab, new Vector3(px, py, 0), Quaternion.identity, transform);
-                character.Spawn(_characterDb.FindCharacter(_type), h, i == 0);
+                character.Spawn(this, _characterDb.FindCharacter(_type), h, i == 0);
                 _characters.Add(character);
                 UI.Instance.AddCharacter(character);
             }
@@ -337,6 +416,17 @@ namespace Fluid
 
         private void Update()
         {
+            if (_openBuildJobs.Count > 0 || _openDigJobs.Count > 0 || _openGatherJobs.Count > 0 || _openDecorateJobs.Count > 0)
+            {
+                foreach (var c in _characters)
+                {
+                    if (c.Job == Job.None)
+                    {
+                        c.GiveJobOrder(Job.Any);
+                    }
+                }
+            }
+
             foreach (var tile in _openBuildJobs)
             {
                 tile.UpdateJobAlpha(_alphaPulse);

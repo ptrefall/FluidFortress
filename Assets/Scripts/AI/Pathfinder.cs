@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -164,29 +165,43 @@ namespace Fluid.AI
             return null;
         }
 
+        private static System.Random rng = new System.Random();
+        private static void Shuffle<T>(List<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+
+        private static List<(int x, int y)> _dir = new List<(int x, int y)>();
         public static Tile GetWalkableAdjacentTile(Tile tile)
         {
             var m = Map.Instance;
             var (x, y) = tile.Pos;
             var l = tile.Layer;
 
-            var t = GetWalkableTile(m, l, x, y - 1);
-            if (t == null)
+            _dir.Add((x, y - 1));
+            _dir.Add((x + 1, y));
+            _dir.Add((x, y + 1));
+            _dir.Add((x - 1, y));
+            Shuffle(_dir);
+
+            foreach (var dir in _dir)
             {
-                t = GetWalkableTile(m, l, x + 1, y);
+                var t = GetWalkableTile(m, l, dir.x, dir.y);
+                if (t != null)
+                {
+                    return t;
+                }
             }
 
-            if (t == null)
-            {
-                t = GetWalkableTile(m, l, x, y + 1);
-            }
-
-            if (t == null)
-            {
-                t = GetWalkableTile(m, l, x - 1, y);
-            }
-
-            return t;
+            return null;
         }
     }
 

@@ -1,4 +1,4 @@
-﻿namespace Fluid.AI
+﻿namespace Fluid.AI.Fortress
 {
     public class FortressDomain
     {

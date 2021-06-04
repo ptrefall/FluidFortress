@@ -71,14 +71,14 @@ namespace Fluid
                 UpdateActiveLayer();
             }
 
-            foreach (var c in PlayerController.Instance.Fortress.Characters)
+            /*foreach (var c in PlayerController.Instance.Fortress.Characters)
             {
                 if (c.Pos.x == x && c.Pos.y == y && c.Layer == h)
                 {
-                    PlayerController.Instance.Fortress.GiveJob(c);
+                    c.GiveJobOrder(Fortress.Job.None);
                     break;
                 }
-            }
+            }*/
         }
 
         public void SpawnPlayerGroup()

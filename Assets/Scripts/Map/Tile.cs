@@ -18,7 +18,7 @@ namespace Fluid
         private int _transitionCost;
 
         private Color? _overrideColor;
-        private Color _lastColor;
+        private Color? _lastColor;
 
         private Fortress.Job _currentJob = Fortress.Job.None;
 
@@ -46,7 +46,7 @@ namespace Fluid
         public void ResetColorOverride()
         {
             _overrideColor = null;
-            _renderer.color = _lastColor;
+            _renderer.color = _lastColor ?? _renderer.color;
         }
 
         private void Awake()
