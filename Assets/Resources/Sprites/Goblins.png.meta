@@ -435,7 +435,7 @@ TextureImporter:
       213: 4807844452981564741
     second: Goblins_143
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -452,10 +452,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -494,6 +496,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -545,6 +549,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
@@ -3592,9 +3620,153 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Goblins_62: -1817041096131134314
+      Goblins_67: 9087274537198097641
+      Goblins_86: -1904544879683144749
+      Goblins_92: -2304414462161921818
+      Goblins_80: 673533542068679473
+      Goblins_128: 5931070485468854185
+      Goblins_76: -4808342685353947761
+      Goblins_97: 6479595288742200760
+      Goblins_63: 324186164165647339
+      Goblins_98: 1907073606006406084
+      Goblins_120: -43087350880028116
+      Goblins_16: 471775265479153214
+      Goblins_94: 8151937741905898050
+      Goblins_47: -7947601458386228195
+      Goblins_56: -7734513558827231988
+      Goblins_55: -2751621625013168244
+      Goblins_8: 1804984797735263853
+      Goblins_112: 539227865757292063
+      Goblins_41: -3701193780849313311
+      Goblins_114: 3873627761530710975
+      Goblins_39: 4122082557379777950
+      Goblins_96: 1462052911618519819
+      Goblins_14: -9068704523308777820
+      Goblins_105: -3561033657920655966
+      Goblins_34: 7871303299115315285
+      Goblins_123: -4424804661311561126
+      Goblins_35: -8896364998845827686
+      Goblins_87: -5438138205515992027
+      Goblins_4: -148724802853021735
+      Goblins_13: 7433749174990800168
+      Goblins_141: 8150247227022867367
+      Goblins_21: -5837435270056909744
+      Goblins_25: 287059021099198059
+      Goblins_103: -4722656413922820544
+      Goblins_107: -51924908884947281
+      Goblins_130: -1281590470626448168
+      Goblins_90: 6574955230018674800
+      Goblins_104: 4100101397177547232
+      Goblins_119: -7251520664343216757
+      Goblins_122: -8451175959168456074
+      Goblins_140: -7558298357482436815
+      Goblins_54: -4507192633396459263
+      Goblins_116: -263449219837943115
+      Goblins_3: -9092662844504015702
+      Goblins_44: 6077859861203179820
+      Goblins_29: 8815917278664691268
+      Goblins_48: 7023612733238071809
+      Goblins_30: -2099041253870613700
+      Goblins_27: 4711332388261827325
+      Goblins_32: -2451947480835461825
+      Goblins_18: -7173880521659210237
+      Goblins_79: -8778956777296502574
+      Goblins_91: -2991716400218803607
+      Goblins_124: 5446628287408850527
+      Goblins_131: 5843973431992383829
+      Goblins_64: -900637494786880176
+      Goblins_106: 4614982512792356878
+      Goblins_20: 7731934116255456039
+      Goblins_60: -1060137807246657309
+      Goblins_7: -1474701725510520778
+      Goblins_69: 4128606633315648364
+      Goblins_74: 3325765294073227270
+      Goblins_5: -6453215221723857510
+      Goblins_11: 2571491408993860768
+      Goblins_83: 2627495073137324115
+      Goblins_58: 520473472739791264
+      Goblins_17: 8834888949193075584
+      Goblins_133: 2618708188689868628
+      Goblins_28: -3194856188803172882
+      Goblins_88: 3976213437021298908
+      Goblins_77: 4701190820520508284
+      Goblins_43: 2025397921278905225
+      Goblins_72: 2074893615321510560
+      Goblins_89: -8100915611278859892
+      Goblins_138: 2021965800305565509
+      Goblins_102: 2653647568146442998
+      Goblins_57: -6840230743094234878
+      Goblins_125: 2416629420808685467
+      Goblins_136: -9212514802262952645
+      Goblins_1: -1360579524249385558
+      Goblins_126: -8822268199868850612
+      Goblins_42: -5533447722762957247
+      Goblins_135: 6496920754915819352
+      Goblins_15: 7170387138371050326
+      Goblins_81: -118027281809800432
+      Goblins_45: -6177646842923257010
+      Goblins_65: 6845307213073650963
+      Goblins_118: -6616229736241260212
+      Goblins_113: 2702452619607392109
+      Goblins_70: -1664220398691604623
+      Goblins_49: -101837611081837367
+      Goblins_110: -7135206579777515217
+      Goblins_95: -2919438144989840140
+      Goblins_23: 2038699875537715301
+      Goblins_0: -3757547826733318397
+      Goblins_19: 8600287736407381527
+      Goblins_115: -7852141093626833001
+      Goblins_6: -3703271685072514305
+      Goblins_93: 6278670581603997943
+      Goblins_127: -3006505614611396400
+      Goblins_142: 5440471363198597302
+      Goblins_46: -5411222531149847577
+      Goblins_121: 4594954450780897059
+      Goblins_111: 3230082833602062235
+      Goblins_9: -6122903385437482886
+      Goblins_33: -2929714454508486074
+      Goblins_137: -8057054214923405187
+      Goblins_100: 3516520549056631127
+      Goblins_132: -7073959740858664534
+      Goblins_2: -8015644767988548548
+      Goblins_12: 8832599878841814534
+      Goblins_38: -4869819329166589581
+      Goblins_71: -5104948495658860166
+      Goblins_50: 2710048742568662597
+      Goblins_73: -2370822712762315860
+      Goblins_84: 2159456707001768000
+      Goblins_61: 6120400710429394610
+      Goblins_99: 8518803253066573073
+      Goblins_129: 8896773305488769736
+      Goblins_68: 4712758689686479854
+      Goblins_51: -678749763495444410
+      Goblins_78: -6281420488456220115
+      Goblins_82: 680485004326063140
+      Goblins_85: 142199838395864139
+      Goblins_109: 3045728388239745708
+      Goblins_37: 7098477571312603811
+      Goblins_143: 4807844452981564741
+      Goblins_101: -1220304475300789720
+      Goblins_26: 3516448278582484302
+      Goblins_22: -159509137619963584
+      Goblins_139: 3983181756131450520
+      Goblins_52: 3192999563096848780
+      Goblins_75: 649931564979905378
+      Goblins_134: 785034290698761182
+      Goblins_10: 4426031245293351206
+      Goblins_117: -6353021028776515390
+      Goblins_31: -5346050160311093811
+      Goblins_53: -6575575660331760949
+      Goblins_108: -6222330662576986483
+      Goblins_40: -1692342804753405605
+      Goblins_24: 7639188678500898558
+      Goblins_66: 9106607860216959931
+      Goblins_59: 747471243472915922
+      Goblins_36: 8099368508642602544
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

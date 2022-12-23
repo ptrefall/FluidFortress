@@ -28,6 +28,7 @@ namespace Fluid.AI.Character.Operators
                     var dir = to.transform.position - c.Self.transform.position;
                     if (dir.magnitude < 2f)
                     {
+                        c.Self.ClearPath();
                         c.Self.Move(dir);
                     }
 
@@ -43,6 +44,10 @@ namespace Fluid.AI.Character.Operators
         }
 
         public void Stop(IContext ctx)
+        {
+        }
+
+        public void Aborted(IContext ctx)
         {
         }
     }

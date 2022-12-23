@@ -435,7 +435,7 @@ TextureImporter:
       213: -8176050682860873736
     second: Kobolds_143
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -452,10 +452,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -494,6 +496,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -545,6 +549,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
@@ -3592,9 +3620,153 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Kobolds_65: -990464803034387969
+      Kobolds_92: -7559915821991088814
+      Kobolds_41: 461248152856660894
+      Kobolds_23: 3915933756731355137
+      Kobolds_69: 4965956329463414935
+      Kobolds_15: -5029077394528798191
+      Kobolds_82: 4291298900628649007
+      Kobolds_81: -5390054979508640171
+      Kobolds_4: 1175594983824911181
+      Kobolds_64: 1892478870173275361
+      Kobolds_66: 6792811251920002720
+      Kobolds_52: -7632777609746528320
+      Kobolds_79: 3796416435211051951
+      Kobolds_127: -4251874959486064300
+      Kobolds_138: 8847762700623400760
+      Kobolds_40: 5296156928649546571
+      Kobolds_56: -2777614434848491162
+      Kobolds_80: -7976848909256615840
+      Kobolds_100: 1727316874473932263
+      Kobolds_94: -4719775403276956078
+      Kobolds_35: 1326545373470923371
+      Kobolds_84: -5594350250056563207
+      Kobolds_49: -1850207515889433257
+      Kobolds_63: -3461063574115311586
+      Kobolds_12: 7180162184610875163
+      Kobolds_97: 1819318857738873684
+      Kobolds_135: -8927171732998274982
+      Kobolds_121: -8051057069238478023
+      Kobolds_47: -9011511653012088853
+      Kobolds_1: 5397642916785908491
+      Kobolds_55: 6695489211928324318
+      Kobolds_91: 6574809186224299925
+      Kobolds_9: 231588472821045042
+      Kobolds_130: -2537034707563121230
+      Kobolds_14: -3327799046116648380
+      Kobolds_39: -5214932633887956592
+      Kobolds_132: 5960860489907538679
+      Kobolds_13: 6689369292371733806
+      Kobolds_73: 9115669686350552820
+      Kobolds_20: -44552183582329421
+      Kobolds_36: -3546440523238344616
+      Kobolds_30: 5723895421339321483
+      Kobolds_6: 4754005471891842922
+      Kobolds_78: 8291286156395946124
+      Kobolds_24: 6825976780885904307
+      Kobolds_74: -4264586479259407747
+      Kobolds_88: 1544574515199816626
+      Kobolds_89: 8383270703791350427
+      Kobolds_98: -8364345763700529549
+      Kobolds_105: -3706462456484852991
+      Kobolds_34: -8166954514400527112
+      Kobolds_113: -4541774090955133928
+      Kobolds_104: -1473794903886566638
+      Kobolds_141: 4468715680022216360
+      Kobolds_101: 764105526304641171
+      Kobolds_87: -3581483006031353787
+      Kobolds_139: 3460183580252413837
+      Kobolds_124: -1254317043964957476
+      Kobolds_120: -288111322122588288
+      Kobolds_108: 280847864828990748
+      Kobolds_21: -5199481209144110384
+      Kobolds_57: -3614670852836432880
+      Kobolds_5: -8236357529284385596
+      Kobolds_53: 4876183776478671778
+      Kobolds_119: -7391443731914153617
+      Kobolds_19: -8660639572289953225
+      Kobolds_48: 5779924368125499195
+      Kobolds_76: -4493649372403081130
+      Kobolds_115: -8844487442441696440
+      Kobolds_22: -5240549974057249096
+      Kobolds_37: -1383827141384859114
+      Kobolds_72: -6632216260001663220
+      Kobolds_103: -5934743941354132751
+      Kobolds_136: 4711753280641616860
+      Kobolds_125: -1856987529694178713
+      Kobolds_99: 4239894391266685601
+      Kobolds_28: 8097943016559444972
+      Kobolds_3: 3746076929303209506
+      Kobolds_27: 5467368044219872880
+      Kobolds_32: -9103426385729927465
+      Kobolds_122: -7273817091592370784
+      Kobolds_93: 5342302124669270623
+      Kobolds_44: 951060971849617101
+      Kobolds_29: -1275735076662095921
+      Kobolds_38: -700933503980455584
+      Kobolds_31: -6646014239522082367
+      Kobolds_50: 3084014782119156125
+      Kobolds_114: -1555230803328940609
+      Kobolds_85: -5648500089795688180
+      Kobolds_45: 2668679224836348379
+      Kobolds_134: -5218845822146319167
+      Kobolds_117: 1074319767818553479
+      Kobolds_46: -3586733692779594759
+      Kobolds_54: -7408479032646604168
+      Kobolds_77: 6784577365618609301
+      Kobolds_43: 5071662514737241512
+      Kobolds_140: -3117441223960396749
+      Kobolds_2: -3196935269879044770
+      Kobolds_111: 560876879192678690
+      Kobolds_75: 7774409966563952142
+      Kobolds_62: 5970586559927909739
+      Kobolds_25: 4571372542396256441
+      Kobolds_0: -5766972640388326315
+      Kobolds_42: 6026592663431672213
+      Kobolds_11: 5458837538706565476
+      Kobolds_112: -5941679579894024594
+      Kobolds_8: 5992085468816615445
+      Kobolds_59: 5486481109677966900
+      Kobolds_86: -3352301642927818773
+      Kobolds_70: 23131124052759010
+      Kobolds_95: -4567272667976290946
+      Kobolds_10: 5366743862557434431
+      Kobolds_110: 1849366008476341236
+      Kobolds_90: -7792426586185051079
+      Kobolds_129: 2963775443697960518
+      Kobolds_116: 5230733088869850402
+      Kobolds_33: -3594056983122633089
+      Kobolds_143: -8176050682860873736
+      Kobolds_123: 6578267499866806184
+      Kobolds_16: 4626820747881051005
+      Kobolds_126: -6502322382690428794
+      Kobolds_137: -3053570243735505599
+      Kobolds_60: -2879679416249781626
+      Kobolds_118: -805716190974585914
+      Kobolds_107: 9519439818753517
+      Kobolds_106: -3081511016326825750
+      Kobolds_109: 5514451039828328969
+      Kobolds_51: 5428002973353671865
+      Kobolds_58: -2015570494745625272
+      Kobolds_71: -7747077349702278583
+      Kobolds_128: -3370218469617228086
+      Kobolds_96: -7821756523714754402
+      Kobolds_26: -8123686406909276324
+      Kobolds_18: 7837899237063023991
+      Kobolds_61: 5769758158980072820
+      Kobolds_67: -4797523947361053786
+      Kobolds_17: 7930479964145805970
+      Kobolds_68: -2688364564886842193
+      Kobolds_102: 4225884216903412642
+      Kobolds_83: 7772561761261143097
+      Kobolds_133: -2628649977957327542
+      Kobolds_7: -7942570046668123222
+      Kobolds_142: -9171007102704912920
+      Kobolds_131: -7619767013455153908
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

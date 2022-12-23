@@ -77,7 +77,7 @@ namespace Fluid
 
             if (jobType == Job.Build)
             {
-                job = GetBuildJob();
+                job = GetBuildJob(character);
                 if (job != null)
                 {
                     if (character.UpdateJob(job.Job, job))
@@ -91,7 +91,7 @@ namespace Fluid
 
             if (jobType == Job.Dig)
             {
-                job = GetDigJob();
+                job = GetDigJob(character);
                 if (job != null)
                 {
                     if (character.UpdateJob(job.Job, job))
@@ -105,7 +105,7 @@ namespace Fluid
 
             if (jobType == Job.Gather)
             {
-                job = GetGatherJob();
+                job = GetGatherJob(character);
                 if (job != null)
                 {
                     if (character.UpdateJob(job.Job, job))
@@ -119,7 +119,7 @@ namespace Fluid
 
             if (jobType == Job.Decorate)
             {
-                job = GetDecorateJob();
+                job = GetDecorateJob(character); 
                 if (job != null)
                 {
                     if (character.UpdateJob(job.Job, job))
@@ -134,14 +134,15 @@ namespace Fluid
             return false;
         }
 
-        public Tile GetBuildJob()
+        public Tile GetBuildJob(Character character)
         {
             if (_openBuildJobs.Count == 0)
             {
                 return null;
             }
 
-            foreach (var job in _openBuildJobs)
+            var list = SortByDistance(character, _openBuildJobs);
+            foreach (var job in list)
             {
                 if (Map.Instance.IsWalkable(job))
                 {
@@ -158,14 +159,15 @@ namespace Fluid
             return null;
         }
 
-        public Tile GetDigJob()
+        public Tile GetDigJob(Character character)
         {
             if (_openDigJobs.Count == 0)
             {
                 return null;
             }
 
-            foreach (var job in _openDigJobs)
+            var list = SortByDistance(character, _openDigJobs);
+            foreach (var job in list)
             {
                 if (Map.Instance.IsWalkable(job) == false)
                 {
@@ -184,14 +186,15 @@ namespace Fluid
             return null;
         }
 
-        public Tile GetGatherJob()
+        public Tile GetGatherJob(Character character)
         {
             if (_openGatherJobs.Count == 0)
             {
                 return null;
             }
 
-            foreach (var job in _openGatherJobs)
+            var list = SortByDistance(character, _openGatherJobs);
+            foreach (var job in list)
             {
                 if (Map.Instance.IsWalkable(job) == false)
                 {
@@ -210,14 +213,15 @@ namespace Fluid
             return null;
         }
 
-        public Tile GetDecorateJob()
+        public Tile GetDecorateJob(Character character)
         {
             if (_openDecorateJobs.Count == 0)
             {
                 return null;
             }
 
-            foreach (var job in _openDecorateJobs)
+            var list = SortByDistance(character, _openDecorateJobs);
+            foreach (var job in list)
             {
                 if (Map.Instance.IsWalkable(job) == false)
                 {
@@ -409,6 +413,12 @@ namespace Fluid
             }
         }
 
+        private void Awake()
+        {
+            var types = Enum.GetValues(typeof(FortressType));
+            _type = (FortressType) Random.Range(0, types.Length);
+        }
+
         private void Start()
         {
             StartCoroutine(JobPulse(2.0f));
@@ -446,6 +456,47 @@ namespace Fluid
             {
                 tile.UpdateJobAlpha(_alphaPulse);
             }
+        }
+
+        private List<Tile> _sortList = new List<Tile>();
+        private List<Tile> SortByDistance(Character character, List<Tile> list)
+        {
+            _sortList.Clear();
+            foreach (var tile in list)
+            {
+                if (_sortList.Count == 0)
+                {
+                    _sortList.Add(tile);
+                    continue;
+                }
+
+                var distTile = Vector3.SqrMagnitude(
+                    (tile.transform.position + new Vector3(0,0,tile.Layer)) - (character.transform.position + new Vector3(0, 0, character.Layer)));
+
+                bool insertedTile = false;
+
+                for(var i = 0; i < _sortList.Count; i++)
+                {
+                    var sortedTile = _sortList[i];
+                    var distSortedTile = Vector3.SqrMagnitude(
+                        (sortedTile.transform.position + new Vector3(0, 0, tile.Layer)) - 
+                        (character.transform.position + new Vector3(0, 0, character.Layer)));
+
+                    if (distTile < distSortedTile)
+                    {
+                        _sortList.Insert(i, tile);
+                        insertedTile = true;
+                        break;
+                    }
+                }
+
+                if (insertedTile == false)
+                {
+                    _sortList.Add(tile);
+                }
+            }
+
+            return _sortList;
         }
 
         private IEnumerator JobPulse(float duration)

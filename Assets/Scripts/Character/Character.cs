@@ -17,6 +17,22 @@ namespace Fluid
         private Domain<CharacterContext> _aiDomain;
         private Planner<CharacterContext> _aiPlanner;
 
+        private static Color[] _debugColors = new Color[]
+        {
+            ColorPalette.YELLOW,
+            ColorPalette.LMAGENTA,
+            ColorPalette.LCYAN,
+            ColorPalette.LBLUE,
+            ColorPalette.BLUE,
+            ColorPalette.MAGENTA,
+            ColorPalette.RED,
+            ColorPalette.LRED
+        };
+
+        private int _debugIndex = 0;
+        private static List<int> _spentDebugIndices = new List<int>();
+        private List<Tile> _colorOverrideTiles = new List<Tile>();
+
         private bool _isBusy;
         private bool _isIdle;
         private Vector3 _lastPosition;
@@ -64,6 +80,17 @@ namespace Fluid
             _aiContext = new CharacterContext(this);
             _aiPlanner = new Planner<CharacterContext>();
             _aiDomain = CharacterDomain.Create(_name);
+
+            // Attempt to find a unique debug color 10 times, otherwise we'll just go with what we got.
+            for (var i = 0; i < 10; i++)
+            {
+                _debugIndex = Random.Range(0, _debugColors.Length);
+                if (_spentDebugIndices.Contains(_debugIndex) == false)
+                {
+                    _spentDebugIndices.Add(_debugIndex);
+                    break;
+                }
+            }
         }
 
         public void SetUi(CharacterUI ui)
@@ -81,7 +108,7 @@ namespace Fluid
             {
                 _fortress.ReturnJob(_currentJobTile);
                 _currentJobTile = null;
-                _currentPath.Clear();
+                ClearPath();
                 _ui?.UpdateJob(null);
                 _aiContext.SetState(CharacterWorldState.HasJob, 0, EffectType.Permanent);
                 _aiContext.SetState(CharacterWorldState.HasJobInRange, 0, EffectType.Permanent);
@@ -94,7 +121,7 @@ namespace Fluid
             {
                 _fortress.CompleteJob(_currentJobTile);
                 _currentJobTile = null;
-                _currentPath.Clear();
+                ClearPath();
                 _ui?.UpdateJob(null);
 
                 _aiContext.SetState(CharacterWorldState.HasJob,0, EffectType.Permanent);
@@ -107,20 +134,38 @@ namespace Fluid
                 return false;
             }
 
+            ClearPath();
             if (Map.Instance.FindPath(Layer, Pos.x, Pos.y, tile, ref _currentPath))
             {
                 _ui?.UpdateJob(Map.Instance.GetJobSprite(job));
                 _currentJobTile = tile;
 
-                /*foreach (var t in _currentPath)
+                foreach (var t in _currentPath)
                 {
-                    t.OverrideColor = ColorPalette.YELLOW;
-                }*/
+                    t.OverrideColor = _debugColors[_debugIndex];
+                    _colorOverrideTiles.Add(t);
+                }
 
                 return true;
             }
 
             return false;
+        }
+
+        public void ClearPath()
+        {
+            foreach (var t in _currentPath)
+            {
+                t.ResetColorOverride();
+            }
+
+            foreach (var t in _colorOverrideTiles)
+            {
+                t.ResetColorOverride();
+            }
+
+            _currentPath.Clear();
+            _colorOverrideTiles.Clear();
         }
 
         public void TakeDamage(int damage)

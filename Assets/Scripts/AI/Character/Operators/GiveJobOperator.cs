@@ -23,6 +23,15 @@ namespace Fluid.AI.Character.Operators
 
         public void Stop(IContext ctx)
         {
+            if (ctx is CharacterContext c)
+            {
+                c.Self.ClearPath();
+            }
+        }
+
+        public void Aborted(IContext ctx)
+        {
+            Stop(ctx);
         }
     }
 }

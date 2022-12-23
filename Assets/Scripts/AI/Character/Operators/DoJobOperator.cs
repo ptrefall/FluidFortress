@@ -23,15 +23,26 @@ namespace Fluid.AI.Character.Operators
             {
                 c.Self.Attack(null, dir);
                 c.Self.UpdateJob(Fluid.Fortress.Job.None, null);
+                c.Self.ClearPath();
                 return TaskStatus.Success;
             }
 
             c.Self.ReturnJob();
+            c.Self.ClearPath();
             return TaskStatus.Success;
         }
 
         public void Stop(IContext ctx)
         {
+            if (ctx is CharacterContext c)
+            {
+                c.Self.ClearPath();
+            }
+        }
+
+        public void Aborted(IContext ctx)
+        {
+            Stop(ctx);
         }
     }
 }

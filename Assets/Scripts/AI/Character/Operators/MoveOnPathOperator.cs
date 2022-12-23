@@ -28,7 +28,7 @@ namespace Fluid.AI.Character.Operators
                 {
                     if (to == c.Self.JobTile)
                     {
-                        c.Self.Path.Clear();
+                        c.Self.ClearPath();
                         return TaskStatus.Success;
                     }
 
@@ -38,18 +38,22 @@ namespace Fluid.AI.Character.Operators
 
                 return TaskStatus.Continue;
             }
-            else
-            {
-                return TaskStatus.Success;
-            }
+
+            c.Self.ClearPath();
+            return TaskStatus.Success;
         }
 
         public void Stop(IContext ctx)
         {
             if (ctx is CharacterContext c)
             {
-                c.Self.Path.Clear();
+                c.Self.ClearPath();
             }
+        }
+
+        public void Aborted(IContext ctx)
+        {
+            Stop(ctx);
         }
     }
 }

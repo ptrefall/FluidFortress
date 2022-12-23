@@ -37,7 +37,11 @@ namespace Fluid
             get => _overrideColor ?? _renderer.color;
             set
             {
-                _lastColor = _renderer.color;
+                if (_overrideColor.HasValue == false)
+                {
+                    _lastColor = _renderer.color;
+                }
+                
                 _overrideColor = value;
                 _renderer.color = value;
             }
@@ -47,6 +51,7 @@ namespace Fluid
         {
             _overrideColor = null;
             _renderer.color = _lastColor ?? _renderer.color;
+            _lastColor = null;
         }
 
         private void Awake()
